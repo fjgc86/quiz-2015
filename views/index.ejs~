@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
@@ -9,6 +8,5 @@
   <body>
     <h1>¡Bienvenido a <%= title %>!</h1>
     <p>El portal donde podrá crear sus propios juegos.</p>
-    <a href="/quizes/question">Empezar el juego</a>
   </body>
 </html>
