@@ -12,13 +12,12 @@ router.get('/author', function(req, res){
   res.render('author');
 });
 
-// Definición de rutas de /quizes
+// Autoload de comandos con :quizId
+router.param('quizId',quizControllers.load); // Autoload :quizId
 
-// Toda la lista de preguntas
+// Definición de rutas de /quizes
 router.get('/quizes', quizControllers.index);
-// Una pregunta
 router.get('/quizes/:quizId(\\d+)', quizControllers.show);
-// La respuesta de una pregunta
 router.get('/quizes/:quizId(\\d+)/answer', quizControllers.answer);
 
 module.exports = router;
