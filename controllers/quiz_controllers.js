@@ -33,25 +33,25 @@ exports.index = function(req, res){
     .then(function(quizes){
       // Renderizar quizes/index enviando el objeto que contiene
       // el resultado de la busqueda
-      res.render('quizes/index', {quizes: quizes});
+      res.render('quizes/index', {quizes: quizes, errors:[]});
     });
   }else{ // Si no viene el parametro search en la cabecera...
     models.Quiz.findAll().then(function(quizes){
-      res.render('quizes/index', {quizes: quizes});
+      res.render('quizes/index', {quizes: quizes, errors:[]});
     });
   }
 };
 
 // GET /quizes/:id
 exports.show = function(req, res){
-  res.render('quizes/show', {quiz: req.quiz});
+  res.render('quizes/show', {quiz: req.quiz, errors:[]});
 };
 
 // GET /quizes/:id/answer
 exports.answer = function(req, res){
   var resultado = 'Incorrecto';
   if(req.query.respuesta === req.quiz.respuesta){resultado = 'Correcto';}
-  res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
+  res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors:[]});
 };
 
 // GET /quizes/new
@@ -60,15 +60,27 @@ exports.new = function(req,res){
     pregunta: "Pregunta",
     respuesta: "Respuesta"
   });
-  res.render('quizes/new', {quiz: quiz});
+  res.render('quizes/new', {quiz: quiz, errors:[]});
 };
 
 // POST /quizes/create
 exports.create = function(req,res){
   var quiz = models.Quiz.build(req.body.quiz);
-  // Guarda en la DB los campos pregunta y respuesta de quiz
-  quiz.save({fields:["pregunta","respuesta"]}).then(function(){
-    // Redirección HTTP (URL relativo) lista de preguntas
-    res.redirect('/quizes');
-  })
+  quiz.validate()
+  .then(
+    function(err){
+      if(err){
+        res.render('quizes/new', {quiz: quiz, errors: err.errors});
+      }else{
+        // Guarda en la DB los campos pregunta y respuesta de quiz
+        quiz
+          .save({fields:["pregunta","respuesta"]})
+          .then(function(){
+            // Redirección HTTP (URL relativo) lista de preguntas
+            res.redirect('/quizes');
+        });
+      }
+    }
+  )
+
 }
