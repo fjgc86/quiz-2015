@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Roboto, Arial,Helvetica,sans-serif;
 }
 
 body {
@@ -20,12 +21,20 @@ body {
 }
 
 section > div {
+  height: auto;
   padding: 16px;
 }
 
 header, nav, section {
   background: #eee;
   text-align: center;
+}
+header{
+  background-color: #1976D2;
+}
+
+header h2{
+  color: white;
 }
 
 footer {
@@ -40,4 +49,18 @@ nav span {
 #ErrorMsgs{
   color: #f61;
   font-size: smaler;
+}
+
+tr{
+  padding: 5px;
+}
+
+td{
+  padding:5px;
+}
+
+a {
+  text-decoration:none;
+  color: #444444;
+  display:inline-block;
 }

@@ -5,9 +5,10 @@
 </form>
 <p>
 
-<table style="margin:0 auto">
+<table style="margin:0 auto;">
 <% var i; for (i=0; i<quizes.length; i++){ %>
   <tr>
+    <td style="text-align: left;"><%= quizes[i].tema %></td>
     <td>
       <a href="quizes/<%= quizes[i].id %>">
         <%= quizes[i].pregunta %>

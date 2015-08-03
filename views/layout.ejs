@@ -18,6 +18,9 @@
       type="text/css"
       media="only screen and (max-width: 480px)"
       href="/stylesheets/smartphone.css" />
+    <link
+      rel="import"
+      href="https://www.polymer-project.org/0.5/components/font-roboto/roboto.html"/>
   </head>
   <body>
     <div id="page-wrap">
@@ -30,15 +33,17 @@
         <span><a href="/author">Créditos</a></span>
       </nav>
       <section class="main" id="s1">
-        <% if (errors.length){ %>
-          <span id='ErrorMsgs'>
-            Corregir errores:<br />
-            <% for(var i in errors) { %>
-              <span><%= errors[i].message %></span><br/>
-            <% } %>
-          </span>
-        <% } %>
-        <%- body %>
+        <div id="divS1">
+          <% if (errors.length){ %>
+            <span id='ErrorMsgs'>
+              Corregir errores:<br />
+              <% for(var i in errors) { %>
+                <span><%= errors[i].message %></span><br/>
+              <% } %>
+            </span>
+          <% } %>
+          <%- body %>
+        </div>
       </section>
       <footer class="main" id="f1">
         Puede acceder a este proyecto en
